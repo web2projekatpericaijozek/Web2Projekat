@@ -18,26 +18,41 @@ namespace WebApp.Persistence.UnitOfWork
             _context = context;
         }
 
-        [Dependency]
-        public List<Pricelist> Days { get; set; }
+        //[Dependency]
+        //public DayRepository Day { get; set; }
+
+        //[Dependency]
+        //public ILineRepository Line { get; set; }
+
+        //[Dependency]
+        //public IPricelistRepository Pricelist { get; set; }
+
+        //[Dependency]
+        //public IPriceOfTicketRepository PriceOfTicket { get; set; }
+
+        //[Dependency]
+        //public IStationRepository Station { get; set; }
+
+        //[Dependency]
+        //public ITimetableRepository Timetable { get; set; }
+
+        //[Dependency]
+        //public ITypeTicketRepository TypeTicket { get; set; }
 
         [Dependency]
-        public List<Pricelist> Lines { get; set; }
-
+        public DayRepository DayRepository { get; set; }
         [Dependency]
-        public List<Pricelist> Pricelists { get; set; }
-
+        public LineRepository LineRepository { get; set; }
         [Dependency]
-        public List<Pricelist> PriceOfTickets { get; set; }
-
+        public PricelistRepository PricelistRepository { get; set; }
         [Dependency]
-        public List<Pricelist> Stations { get; set; }
-
+        public PriceOfTicketRepository PriceOfTicketRepository { get; set; }
         [Dependency]
-        public List<Pricelist> Timetables { get; set; }
-
+        public StationRepository StationRepository { get; set; }
         [Dependency]
-        public List<Pricelist> TypeTickets { get; set; }
+        public TimetableRepository TimetableRepository { get; set; }
+        [Dependency]
+        public TypeTicketRepository TypeTicketRepository { get; set; }
 
         public int Complete()
         {
