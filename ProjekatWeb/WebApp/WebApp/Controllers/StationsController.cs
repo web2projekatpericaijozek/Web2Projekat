@@ -97,7 +97,7 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Station))]
         public IHttpActionResult DeleteStation(int id)
         {
-            Station station = db.Station.Find(id);
+            Station station = unitOfWork.StationRepository.Get(id);
             if (station == null)
             {
                 return NotFound();
