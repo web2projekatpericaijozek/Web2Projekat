@@ -7,13 +7,23 @@
     <!-- Tabs Titles -->
 
     <!-- Icon -->
-    <div class="fadeIn first">
+    <!-- <div class="fadeIn first">
       <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-    </div>
+    </div> -->
 
       <form #f="ngForm" (submit)="login(f.value,f)">
-        <input name="username" class="fadeIn second"  ngModel/>
-        <input type="password" class="fadeIn third" name="password" ngModel/>
+        <label>
+          Username:
+          <input type="text" name="username" class="fadeIn second"  ngModel/>
+        </label>
+        <br>
+
+        <label>
+          Password:
+          <input type="password" class="fadeIn third" name="password" ngModel/>
+        </label>
+        <br>
+
         <input type="submit" class="fadeIn fourth"/>
       </form>
 

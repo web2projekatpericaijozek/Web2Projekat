@@ -15,11 +15,13 @@ import { AuthHttpService } from 'src/app/services/http/auth.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavigacijaComponent } from './navigacija/navigacija.component';
+import { LinijeComponent } from './linije/linije.component';
 
 const routes : Routes = [
   {path:"home", component: HomeComponent},
   {path:"login", component: LoginComponent},
   {path:"registration", component: RegistrationComponent},
+  {path:"linije", component: LinijeComponent},
   {path: "", component: HomeComponent, pathMatch: "full"},
   {path: "**", redirectTo: "home"}
 ]
@@ -32,7 +34,8 @@ const routes : Routes = [
     RegistrationComponent,
     HomeComponent,
     RegistrationComponent,
-    NavigacijaComponent
+    NavigacijaComponent,
+    LinijeComponent
   ],
   imports: [
     BrowserModule,
