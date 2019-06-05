@@ -14,6 +14,7 @@ import { FormsModule} from '@angular/forms'
 import { AuthHttpService } from 'src/app/services/http/auth.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavigacijaComponent } from './navigacija/navigacija.component';
 
 const routes : Routes = [
   {path:"home", component: HomeComponent},
@@ -30,7 +31,8 @@ const routes : Routes = [
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    NavigacijaComponent
   ],
   imports: [
     BrowserModule,
