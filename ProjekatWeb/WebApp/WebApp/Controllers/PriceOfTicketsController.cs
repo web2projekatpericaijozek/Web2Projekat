@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("api/PriceOfTickets")]
     public class PriceOfTicketsController : ApiController
     {
         private IUnitOfWork unitOfWork;
@@ -21,6 +22,31 @@ namespace WebApp.Controllers
         public PriceOfTicketsController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(float))]
+        [Route("GetKarta/{tip}")]
+        public IHttpActionResult GetKartaCena(string tip)
+        {
+            List<TypeTicket> karte = unitOfWork.TypeTicketRepository.GetAll().ToList();
+            PriceOfTicket price = new PriceOfTicket();
+            float cena = 0;
+            foreach (TypeTicket k in karte)
+            {
+                if (tip == k.Type)
+                {
+                    price = unitOfWork.PriceOfTicketRepository.Get(k.Id);
+                    cena = price.Price;
+                }
+            }
+
+            if (karte == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cena);
         }
 
         // GET: api/PriceOfTickets

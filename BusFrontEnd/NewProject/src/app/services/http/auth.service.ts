@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/salo/osoba';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -30,5 +31,13 @@ export class AuthHttpService{
         {
              return this.http.post<any>(this.base_url + "/api/Account/Register", data).subscribe();
             
+        }
+
+        GetCenaKarte(tip: string): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetKarta/" + tip);
+        }
+        GetKupiKartu(tipKarte: string, tipKorisnika: string, user : string): Observable<any>{
+           
+            return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetKartaKupi2/" + tipKarte + "/" + tipKorisnika + "/" + user);
         }
 }

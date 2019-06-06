@@ -19,6 +19,7 @@ import { LinijeComponent } from './linije/linije.component';
 import { RedvoznjeComponent } from './redvoznje/redvoznje.component';
 import { RedVoznjeHttpService } from './services/redvoznje.service';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
+import { KartaComponent } from './karta/karta.component';
 
 const routes : Routes = [
   {path:"home", component: HomeComponent},
@@ -27,6 +28,7 @@ const routes : Routes = [
   {path:"linije", component: LinijeComponent},
   {path:"redvoznje", component: RedvoznjeComponent},
   {path:"cenovnik", component: CenovnikComponent},
+  {path:"karta", component: KartaComponent},
 
   {path: "", component: HomeComponent, pathMatch: "full"},
   {path: "**", redirectTo: "home"}
@@ -43,7 +45,8 @@ const routes : Routes = [
     NavigacijaComponent,
     LinijeComponent,
     RedvoznjeComponent,
-    CenovnikComponent
+    CenovnikComponent,
+    KartaComponent
   ],
   imports: [
     BrowserModule,
