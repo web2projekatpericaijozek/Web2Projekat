@@ -13,11 +13,7 @@ namespace WebApp.Models
         public List<Station> Stations { get; set; }
         public List<Timetable> Timetables { get; set; }
 
-        public Line(int i, int n)
-        {
-            Id = i;
-            Number = n;
-        }
+        
 
         
     }

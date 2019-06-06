@@ -18,41 +18,25 @@ namespace WebApp.Persistence.UnitOfWork
             _context = context;
         }
 
-        //[Dependency]
-        //public DayRepository Day { get; set; }
-
-        //[Dependency]
-        //public ILineRepository Line { get; set; }
-
-        //[Dependency]
-        //public IPricelistRepository Pricelist { get; set; }
-
-        //[Dependency]
-        //public IPriceOfTicketRepository PriceOfTicket { get; set; }
-
-        //[Dependency]
-        //public IStationRepository Station { get; set; }
-
-        //[Dependency]
-        //public ITimetableRepository Timetable { get; set; }
-
-        //[Dependency]
-        //public ITypeTicketRepository TypeTicket { get; set; }
+        
 
         [Dependency]
-        public DayRepository DayRepository { get; set; }
+        public IDayRepository DayRepository { get; set; }
         [Dependency]
-        public LineRepository LineRepository { get; set; }
+        public ILineRepository LineRepository { get; set; }
         [Dependency]
-        public PricelistRepository PricelistRepository { get; set; }
+        public IPricelistRepository PricelistRepository { get; set; }
         [Dependency]
-        public PriceOfTicketRepository PriceOfTicketRepository { get; set; }
+        public IPriceOfTicketRepository PriceOfTicketRepository { get; set; }
         [Dependency]
-        public StationRepository StationRepository { get; set; }
+        public IStationRepository StationRepository { get; set; }
         [Dependency]
-        public TimetableRepository TimetableRepository { get; set; }
+        public ITimetableRepository TimetableRepository { get; set; }
         [Dependency]
-        public TypeTicketRepository TypeTicketRepository { get; set; }
+        public ITypeTicketRepository TypeTicketRepository { get; set; }
+
+        [Dependency]
+        public ITimetableTypeRepository TimetableTypeRepository { get; set; }
 
         public int Complete()
         {

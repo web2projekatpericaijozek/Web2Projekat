@@ -14,13 +14,42 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    
+    [RoutePrefix("api/Timetables")]
     public class TimetablesController : ApiController
     {
         private IUnitOfWork unitOfWork;
 
+        private const string LocalLoginProvider = "Local";
+        private ApplicationUserManager _userManager;
+
+        public TimetablesController() { }
         public TimetablesController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        [Route("IspisReda/{timetableTypeId}/{dayId}/{lineId}")]
+        [HttpGet]
+        public IHttpActionResult GetTimetableTimes(int timetableTypeId, int dayId, int lineId) //vraca vremena polaska autobusa iz reda voznji
+        {
+            Timetable t = new Timetable();
+            t = unitOfWork.TimetableRepository.Find(x => x.TimetableTypeId == timetableTypeId && x.DayId == dayId && x.LineId == lineId).FirstOrDefault();
+
+            return Ok(t.Info);
+        }
+
+        [ResponseType(typeof(TimetableBindingModel))]
+        [Route("RedVoznjiInfo")]
+        public IHttpActionResult GetScheduleInfo()
+        {
+            List<TimetableType> timetableTypes = unitOfWork.TimetableTypeRepository.GetAll().ToList();
+            List<Day> days = unitOfWork.DayRepository.GetAll().ToList();
+            List<Line> lines = unitOfWork.LineRepository.GetAll().ToList();
+            
+            TimetableBindingModel s = new TimetableBindingModel() { TimetableTypes = timetableTypes, Lines = lines, Days = days };
+
+            return Ok(s);
         }
 
         // GET: api/Timetables
@@ -120,7 +149,7 @@ namespace WebApp.Controllers
 
         private bool TimetableExists(int id)
         {
-            return unitOfWork.TimetableRepository.Find(e => e.Id == id).Count() > 0;
+            return unitOfWork.TimetableRepository.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

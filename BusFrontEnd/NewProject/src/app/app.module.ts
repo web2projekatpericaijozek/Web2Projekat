@@ -16,12 +16,16 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavigacijaComponent } from './navigacija/navigacija.component';
 import { LinijeComponent } from './linije/linije.component';
+import { RedvoznjeComponent } from './redvoznje/redvoznje.component';
+import { RedVoznjeHttpService } from './services/redvoznje.service';
 
 const routes : Routes = [
   {path:"home", component: HomeComponent},
   {path:"login", component: LoginComponent},
   {path:"registration", component: RegistrationComponent},
   {path:"linije", component: LinijeComponent},
+  {path:"redvoznje", component: RedvoznjeComponent},
+
   {path: "", component: HomeComponent, pathMatch: "full"},
   {path: "**", redirectTo: "home"}
 ]
@@ -35,7 +39,8 @@ const routes : Routes = [
     HomeComponent,
     RegistrationComponent,
     NavigacijaComponent,
-    LinijeComponent
+    LinijeComponent,
+    RedvoznjeComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,7 @@ const routes : Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [HttpService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},AuthHttpService],
+  providers: [HttpService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},AuthHttpService,RedVoznjeHttpService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

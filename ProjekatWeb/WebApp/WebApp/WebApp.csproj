@@ -270,6 +270,10 @@
     <Compile Include="Migrations\201906041035137_BusMigration.Designer.cs">
       <DependentUpon>201906041035137_BusMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906060848173_BusNewMigration.cs" />
+    <Compile Include="Migrations\201906060848173_BusNewMigration.Designer.cs">
+      <DependentUpon>201906060848173_BusNewMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -280,6 +284,8 @@
     <Compile Include="Models\PriceOfTicket.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\Timetable.cs" />
+    <Compile Include="Models\TimetableBindingModel.cs" />
+    <Compile Include="Models\TimetableType.cs" />
     <Compile Include="Models\TypeTicket.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Persistence\Repository\DayRepository.cs" />
@@ -290,6 +296,7 @@
     <Compile Include="Persistence\Repository\IRepository.cs" />
     <Compile Include="Persistence\Repository\IStationRepository.cs" />
     <Compile Include="Persistence\Repository\ITimetableRepository.cs" />
+    <Compile Include="Persistence\Repository\ITimetableTypeRepository.cs" />
     <Compile Include="Persistence\Repository\ITypeTicketRepository.cs" />
     <Compile Include="Persistence\Repository\LineRepository.cs" />
     <Compile Include="Persistence\Repository\PricelistRepository.cs" />
@@ -297,6 +304,7 @@
     <Compile Include="Persistence\Repository\Repository.cs" />
     <Compile Include="Persistence\Repository\StationRepository.cs" />
     <Compile Include="Persistence\Repository\TimetableRepository.cs" />
+    <Compile Include="Persistence\Repository\TimetableTypeRepository.cs" />
     <Compile Include="Persistence\Repository\TypeTicketRepository.cs" />
     <Compile Include="Persistence\UnitOfWork\DemoUnitOfWork.cs" />
     <Compile Include="Persistence\UnitOfWork\IUnitOfWork.cs" />
@@ -403,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906041035137_BusMigration.resx">
       <DependentUpon>201906041035137_BusMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906060848173_BusNewMigration.resx">
+      <DependentUpon>201906060848173_BusNewMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

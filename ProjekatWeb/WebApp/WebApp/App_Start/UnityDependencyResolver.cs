@@ -76,6 +76,7 @@ namespace WebApp.App_Start
             container.RegisterType<IStationRepository, StationRepository>();
             container.RegisterType<ITimetableRepository, TimetableRepository>();
             container.RegisterType<ITypeTicketRepository, TypeTicketRepository>();
+            container.RegisterType<ITimetableTypeRepository, TimetableTypeRepository>();
             container.RegisterType<IUnitOfWork, DemoUnitOfWork>();
         }
 

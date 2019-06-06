@@ -1,0 +1,90 @@
+<form id="rvform" name="rvform" action="redvoznje.php" method="get">
+                       
+  <table class="cenovnik-form" width="100%">
+  <tbody><tr>
+      <td width="210px">
+          <span class="lightblue-box-label"> Red voznje vazi od </span>
+      </td>
+      <td align="left">
+           <select class="selectbox" id="vaziod" onchange="lista_linija();" name="vaziod">
+                                                  <option value="2019-05-25"> 
+                  25.05.2019 
+              </option>
+                  
+        </select>
+      </td>
+  </tr>
+  
+ 
+  <tr>
+      <td width="210px">
+          <span class="lightblue-box-label"> Red voznje </span>
+      </td>
+      <td align="left">
+         
+        <select [(ngModel)]="selectedTimetableType" name="selectedTimetableType">
+          <option *ngFor="let TimetableType of timetableInfo.TimetableTypes" [ngValue]="TimetableType">
+            {{TimetableType.Name}}
+          </option>
+        </select>
+         
+      </td>
+  </tr>
+  
+  
+  <tr>
+      <td align="left">
+          <span class="lightblue-box-label">
+            Dan
+          </span>
+      </td>
+      <td align="left">
+          
+        <select [(ngModel)]="selectedDay" name="selectedDay" >
+          <option *ngFor="let Day of timetableInfo.Day" [ngValue]="Day">
+            {{Day.DayOfWeek}}
+          </option>
+        </select>
+          
+      </td>
+  </tr>
+  
+  
+  <tr>
+      <td align="left">
+      
+        <span class="lightblue-box-label">
+          Linija
+            <br>
+              (Izaberite liniju) 
+           </span>
+      
+      </td>
+      <td align="left" valign="top">    
+        <div id="lista_linija">		
+          <select [(ngModel)]="selectedLine" name="selectedLine" (change)="changeselectedLine()">
+            <option *ngFor="let Line of timetableInfo.Lines" [ngValue]="Line">
+              {{Line.Number}}
+            </option>
+          </select>
+        </div>                               
+      </td>
+   </tr>
+   <tr>    
+       
+      <td></td>
+      <td>
+      
+      <div align="right">
+        <button (click)="ispisPolaska()" [disabled]="selectedTimetableType.Id==undefined || selectedDay.Id==undefined || selectedLine.Id==undefined">Prikazi</button>
+      </div>
+      </td>
+    </tr>
+  
+    </tbody>
+  </table>
+
+  Polasci sa stanice:<br>
+  {{timetable.Times}}
+
+</form>

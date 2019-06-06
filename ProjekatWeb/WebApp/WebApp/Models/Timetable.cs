@@ -20,5 +20,8 @@ namespace WebApp.Models
         public int DayId { get; set; }
 
         public Day Day { get; set; }
+
+        public int TimetableTypeId { get; set; }
+        public TimetableType TimetableType { get; set; }
     }
 }
