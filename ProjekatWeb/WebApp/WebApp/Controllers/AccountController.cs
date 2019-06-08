@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -14,6 +16,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebApp.Models;
+using WebApp.Persistence.UnitOfWork;
 using WebApp.Providers;
 using WebApp.Results;
 
@@ -25,6 +28,13 @@ namespace WebApp.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+
+        private IUnitOfWork unitOfWork;
+
+        public AccountController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
 
         public AccountController()
         {
@@ -316,6 +326,28 @@ namespace WebApp.Controllers
             }
 
             return logins;
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(string))]
+        [Route("GetTipKorisnika/{username}")]
+        public IHttpActionResult GetTipKorisnika(string username)
+        {
+            List<ApplicationUser> korisnici = unitOfWork.AppUserRepository.GetAll().ToList();
+            string retVal = "";
+
+            foreach(ApplicationUser k in korisnici)
+            {
+                if (k.UserName == username)
+                    retVal += k.Tip;
+            }
+
+            if (korisnici == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(retVal);
         }
 
         // POST api/Account/Register

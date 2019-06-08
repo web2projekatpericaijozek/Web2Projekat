@@ -49,6 +49,39 @@ namespace WebApp.Controllers
             return Ok(cena);
         }
 
+        [AllowAnonymous]
+        [ResponseType(typeof(string))]
+        [Route("GetKartaKupi2/{tipKarte}/{tipKorisnika}/{user}")]
+        public IHttpActionResult GetKarta(string tipKarte, string tipKorisnika, string user)
+        {
+            List<TypeTicket> karte = unitOfWork.TypeTicketRepository.GetAll().ToList();
+            PriceOfTicket price = new PriceOfTicket();
+            double cena = 0;
+            string retVal = "";
+            foreach (TypeTicket k in karte)
+            {
+                if (k.Type == tipKarte)
+                {
+                    price = unitOfWork.PriceOfTicketRepository.Get(k.Id);
+                    if(tipKorisnika == "student")
+                        cena = price.Price * 0.8;
+                    if (tipKorisnika == "penzioner")
+                        cena = price.Price * 0.5;
+                    else
+                        cena = price.Price;
+                }
+
+                 retVal += "Uspesno ste kupili " + tipKarte + ", po ceni od : " + cena.ToString() + " din";
+            }
+
+            if (karte == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(retVal);
+        }
+
         // GET: api/PriceOfTickets
         public IEnumerable<PriceOfTicket> GetPriceOfTicket()
         {

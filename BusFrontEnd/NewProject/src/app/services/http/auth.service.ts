@@ -9,11 +9,13 @@ export class AuthHttpService{
 
         base_url = "http://localhost:52295"
 
+        user: string
+
         constructor(private http: HttpClient){
 
         }
 
-        logIn(username: string, password: string){
+        logIn(username: string, password: string) : Observable<any>{
 
             let data = `username=${username}&password=${password}&grant_type=password`;
             let httpOptions = {
@@ -21,10 +23,20 @@ export class AuthHttpService{
                     "Content-type": "application/x-www-form-urlencoded"
                 }
             }
+           // return this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username)
             this.http.post<any>(this.base_url + "/oauth/token",data, httpOptions )
             .subscribe(data => {
-                localStorage.jwt = data.access_token;
+            localStorage.jwt = data.access_token;
+            let jwtData = localStorage.jwt.split('.')[1]
+            let decodedJwtJsonData = window.atob(jwtData)
+            let decodedJwtData = JSON.parse(decodedJwtJsonData)
+
+  
+            let role = decodedJwtData.role
+            this.user = decodedJwtData.unique_name;
+            
             });
+            return this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username);
         }
 
         registration(data:User)

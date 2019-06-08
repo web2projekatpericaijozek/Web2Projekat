@@ -32,7 +32,7 @@ export class KartaComponent implements OnInit {
 
        
         this.user = decodedJwtData.nameid;
-      this.http.GetKupiKartu(this.tip, "Student", this.user).subscribe((vaziDo)=>
+      this.http.GetKupiKartu(this.tip, "student", this.user).subscribe((vaziDo)=>
     {
       this.vaziDo1 = vaziDo;
       err => console.log(err);
