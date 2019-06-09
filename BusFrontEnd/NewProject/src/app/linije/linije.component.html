@@ -7,10 +7,8 @@
 <nav class="navbar navbar-expand-lg">
             <div>
                 <ul class="navbar-nav">
-                    <li class="active">
-                        <a routerLink="/linije" class="nav-link">1 - LIMAN - PODBARA - Z. STANICA</a>
-                        <a routerLink="/linije" class="nav-link">2 - GRBAVICA - STRAND - KLISA</a>
-                        <a routerLink="/linije" class="nav-link">3 - DETELINARA - LIMAN - PODBARA</a>
+                    <li *ngFor = "let l of lines">
+                       {{l.Number}}
                     </li>
                 </ul>
             </div>

@@ -14,8 +14,28 @@ export class KartaComponent implements OnInit {
   cena1: number;
   vaziDo1 : string;
   user: string;
+  korisnik: string;
   
   ngOnInit() {
+
+    let jwtData = localStorage.jwt.split('.')[1]
+        //let decodedJwtJsonData = window.atob(jwtData)
+        //let decodedJwtData = JSON.parse(decodedJwtJsonData)
+        //this.user = decodedJwtData.nameid;
+        if(jwtData == undefined)
+        {
+          this.user = "neregistrovan";
+        }
+        else
+        {
+          let decodedJwtJsonData = window.atob(jwtData)
+        let decodedJwtData = JSON.parse(decodedJwtJsonData)
+        this.user = decodedJwtData.nameid;
+        }
+        this.http.GetTipKorisnika(this.user).subscribe((korisnik)=>{
+          this.korisnik = korisnik;
+          err => console.log(err);
+        });
   }
 
   CenaKarte(){
@@ -32,6 +52,7 @@ export class KartaComponent implements OnInit {
 
        
         this.user = decodedJwtData.nameid;
+        
       this.http.GetKupiKartu(this.tip, "student", this.user).subscribe((vaziDo)=>
     {
       this.vaziDo1 = vaziDo;

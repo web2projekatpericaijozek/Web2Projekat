@@ -58,4 +58,16 @@ export class AuthHttpService{
            
             return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetKartaKupi2/" + tipKarte + "/" + tipKorisnika + "/" + user);
         }
+        GetAllLines() : Observable<any>{
+            return Observable.create((observer) => {
+                this.http.get<any>(this.base_url + "/api/Lines/GetLinije").subscribe(data =>{
+                    observer.next(data);
+                    observer.complete();
+                }) 
+            });
+        }
+        GetTipKorisnika(user : string): Observable<any>{
+           
+            return this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + user);
+        }
 }

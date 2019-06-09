@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("api/Lines")]
     public class LinesController : ApiController
     {
         private IUnitOfWork unitOfWork;
@@ -25,8 +26,12 @@ namespace WebApp.Controllers
 
 
         // GET: api/Lines
+        [AllowAnonymous]
+        [ResponseType(typeof(List<Line>))]
+        [Route("GetLinije")]
         public IEnumerable<Line> GetLines()
         {
+            List<Line> linije = unitOfWork.LineRepository.GetAll().ToList();
             return unitOfWork.LineRepository.GetAll();
         }
 

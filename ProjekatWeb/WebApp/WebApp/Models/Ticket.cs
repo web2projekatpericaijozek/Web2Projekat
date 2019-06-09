@@ -13,7 +13,7 @@ namespace WebApp.Models
         public DateTime VaziDo { get; set; } //cekirana u trenutku
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-        public int PriceOfTicket { get; set; }
+        public int PriceOfTicketId { get; set; }
         public PriceOfTicket CenaKarte { get; set; }
     }
 

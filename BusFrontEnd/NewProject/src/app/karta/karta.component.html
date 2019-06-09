@@ -1,9 +1,14 @@
 <p>
-  <select [(ngModel)]="tip" >
+  <select [(ngModel)]="tip" *ngIf = "(korisnik == 'registrovan')" >
       <option *ngFor="let t of tipovi">
         {{t}} 
       </option>
-  </select>
+  </select> 
+  <select [(ngModel)]="tip" *ngIf = "(korisnik == 'neregistrovan')" >
+    <option>
+      Vremenska
+    </option>
+</select>
   <button (click)="CenaKarte()" >Prikazi cenu ove karte! </button>
   <br>
   {{cena1}}

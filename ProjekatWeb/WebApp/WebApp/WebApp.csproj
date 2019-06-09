@@ -278,6 +278,10 @@
     <Compile Include="Migrations\201906091644357_TicketMigration.Designer.cs">
       <DependentUpon>201906091644357_TicketMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906091909373_TicketIdMigration.cs" />
+    <Compile Include="Migrations\201906091909373_TicketIdMigration.Designer.cs">
+      <DependentUpon>201906091909373_TicketIdMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -422,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906091644357_TicketMigration.resx">
       <DependentUpon>201906091644357_TicketMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906091909373_TicketIdMigration.resx">
+      <DependentUpon>201906091909373_TicketIdMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

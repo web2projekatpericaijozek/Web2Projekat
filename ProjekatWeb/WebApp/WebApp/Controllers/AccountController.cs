@@ -16,6 +16,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebApp.Models;
+using WebApp.Persistence;
 using WebApp.Persistence.UnitOfWork;
 using WebApp.Providers;
 using WebApp.Results;
@@ -28,6 +29,7 @@ namespace WebApp.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         private IUnitOfWork unitOfWork;
 
@@ -328,27 +330,26 @@ namespace WebApp.Controllers
             return logins;
         }
 
-        //[AllowAnonymous]
-        //[ResponseType(typeof(string))]
-        //[Route("GetTipKorisnika/{username}")]
-        //public IHttpActionResult GetTip(string username)
-        //{
-            //List<ApplicationUser> korisnici = unitOfWork.AppUserRepository.GetAll().ToList();
-            //string retVal = "";
+        [AllowAnonymous]
+        [ResponseType(typeof(string))]
+        [Route("GetTipKorisnika/{user}")]
+        public IHttpActionResult GetTip(string user)
+        {
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
 
-            //foreach(ApplicationUser k in korisnici)
-            //{
-            //    if (k.UserName == username)
-            //        retVal += k.Tip;
-            //}
+            var id = User.Identity.GetUserId();
+            ApplicationUser u = userManager.FindById(user);
 
-            //if (korisnici == null)
-            //{
-            //    return NotFound();
-            //}
+            string retVal = "registrovan";
 
-            //return Ok(retVal);
-        //}
+            if (u == null)
+            {
+                retVal = "neregistrovan";
+            }
+
+            return Ok(retVal);
+        }
 
         // POST api/Account/Register
         [AllowAnonymous]

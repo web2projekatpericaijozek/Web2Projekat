@@ -18,6 +18,6 @@ namespace WebApp.Models
 
         public TypeTicket TypeTicket { get; set; }
 
-        public List<Ticket> Tickets { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }
