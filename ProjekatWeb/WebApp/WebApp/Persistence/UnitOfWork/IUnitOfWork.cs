@@ -19,7 +19,6 @@ namespace WebApp.Persistence.UnitOfWork
         ITimetableRepository TimetableRepository { get; set; }
         ITypeTicketRepository TypeTicketRepository { get; set; }
         ITimetableTypeRepository TimetableTypeRepository { get; set; }
-        IAppUserRepository AppUserRepository { get; set; }
 
         int Complete();
     }

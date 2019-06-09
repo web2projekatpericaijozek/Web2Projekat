@@ -328,27 +328,27 @@ namespace WebApp.Controllers
             return logins;
         }
 
-        [AllowAnonymous]
-        [ResponseType(typeof(string))]
-        [Route("GetTipKorisnika/{username}")]
-        public IHttpActionResult GetTip(string username)
-        {
-            List<ApplicationUser> korisnici = unitOfWork.AppUserRepository.GetAll().ToList();
-            string retVal = "";
+        //[AllowAnonymous]
+        //[ResponseType(typeof(string))]
+        //[Route("GetTipKorisnika/{username}")]
+        //public IHttpActionResult GetTip(string username)
+        //{
+            //List<ApplicationUser> korisnici = unitOfWork.AppUserRepository.GetAll().ToList();
+            //string retVal = "";
 
-            foreach(ApplicationUser k in korisnici)
-            {
-                if (k.UserName == username)
-                    retVal += k.Tip;
-            }
+            //foreach(ApplicationUser k in korisnici)
+            //{
+            //    if (k.UserName == username)
+            //        retVal += k.Tip;
+            //}
 
-            if (korisnici == null)
-            {
-                return NotFound();
-            }
+            //if (korisnici == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return Ok(retVal);
-        }
+            //return Ok(retVal);
+        //}
 
         // POST api/Account/Register
         [AllowAnonymous]

@@ -20,6 +20,8 @@ namespace WebApp.Models
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Date { get; set; }
+
+        public List<Ticket> Tickets { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

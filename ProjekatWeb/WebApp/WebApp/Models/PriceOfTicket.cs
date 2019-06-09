@@ -17,5 +17,7 @@ namespace WebApp.Models
         public int TypeTicketId { get; set; }
 
         public TypeTicket TypeTicket { get; set; }
+
+        public List<Ticket> Tickets { get; set; }
     }
 }

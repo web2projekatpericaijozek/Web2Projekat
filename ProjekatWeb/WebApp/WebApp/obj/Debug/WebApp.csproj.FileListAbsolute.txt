@@ -891,3 +891,4 @@ C:\Users\Djole\Desktop\Web2Projekat\ProjekatWeb\WebApp\WebApp\obj\Debug\WebApp.c
 C:\Users\Djole\Desktop\Web2Projekat\ProjekatWeb\WebApp\WebApp\obj\Debug\WebApp.dll
 C:\Users\Djole\Desktop\Web2Projekat\ProjekatWeb\WebApp\WebApp\obj\Debug\WebApp.pdb
 C:\Users\Djole\Desktop\Web2Projekat\ProjekatWeb\WebApp\WebApp\obj\Debug\WebApp.Migrations.BusNewMigration.resources
+C:\Users\Djole\Desktop\Web2Projekat\ProjekatWeb\WebApp\WebApp\obj\Debug\WebApp.Migrations.TicketMigration.resources
