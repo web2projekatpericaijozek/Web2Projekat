@@ -15,7 +15,7 @@ export class AuthHttpService{
 
         }
 
-        logIn(username: string, password: string) : Observable<any>{
+        logIn(username: string, password: string){
 
             let data = `username=${username}&password=${password}&grant_type=password`;
             let httpOptions = {
@@ -36,8 +36,14 @@ export class AuthHttpService{
             this.user = decodedJwtData.unique_name;
             
             });
-            return this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username);
+            //return this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username);
         }
+        
+        logIn2(username: string, password: string){
+
+             this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username).subscribe();
+        }
+
 
         registration(data:User)
         {

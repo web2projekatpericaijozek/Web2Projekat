@@ -22,7 +22,7 @@ using WebApp.Results;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
+   
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -331,7 +331,7 @@ namespace WebApp.Controllers
         [AllowAnonymous]
         [ResponseType(typeof(string))]
         [Route("GetTipKorisnika/{username}")]
-        public IHttpActionResult GetTipKorisnika(string username)
+        public IHttpActionResult GetTip(string username)
         {
             List<ApplicationUser> korisnici = unitOfWork.AppUserRepository.GetAll().ToList();
             string retVal = "";
