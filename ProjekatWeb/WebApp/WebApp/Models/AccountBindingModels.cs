@@ -50,6 +50,10 @@ namespace WebApp.Models
         [Display(Name = "LastName")]
         public string LastName { get; set; }
 
+        [Required]
+        [Display(Name = "Tip")]
+        public string Tip { get; set; }
+
 
 
 

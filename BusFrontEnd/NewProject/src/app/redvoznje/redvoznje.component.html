@@ -41,7 +41,7 @@
       <td align="left">
           
         <select [(ngModel)]="selectedDay" name="selectedDay" >
-          <option *ngFor="let Day of timetableInfo.Day" [ngValue]="Day">
+          <option *ngFor="let Day of timetableInfo.Days" [ngValue]="Day">
             {{Day.DayOfWeek}}
           </option>
         </select>

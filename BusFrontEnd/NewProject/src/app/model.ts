@@ -32,7 +32,7 @@ export class Timetable{
 }
 
 export class TimetableInfo{
-    Day: Day[];
+    Days: Day[];
     Lines: Line[];
 }
 

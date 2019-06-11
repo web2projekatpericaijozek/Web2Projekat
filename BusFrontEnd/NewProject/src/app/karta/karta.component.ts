@@ -45,6 +45,8 @@ export class KartaComponent implements OnInit {
     });
   }
   KupiKartu(){
+    if(localStorage.jwt != "undefined")
+    {
      let jwtData = localStorage.jwt.split('.')[1]
         let decodedJwtJsonData = window.atob(jwtData)
         let decodedJwtData = JSON.parse(decodedJwtJsonData)
@@ -52,6 +54,7 @@ export class KartaComponent implements OnInit {
 
        
         this.user = decodedJwtData.nameid;
+    }
         
       this.http.GetKupiKartu(this.tip, "student", this.user).subscribe((vaziDo)=>
     {

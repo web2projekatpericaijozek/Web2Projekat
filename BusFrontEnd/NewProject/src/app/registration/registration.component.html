@@ -41,6 +41,16 @@
           <input type="password" formControlName="confirmPassword" >
         </label>
         <br>
+
+        <label>
+          Type of user:
+          <select [(ngModel)]="tip" formControlName="tip" >
+            <option *ngFor="let k of korisnici" >
+              {{k}}
+            </option>
+          </select>
+        </label>
+        <br>
         
         <label>
           &nbsp;  &nbsp; &nbsp; &nbsp; Date:

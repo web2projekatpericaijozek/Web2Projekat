@@ -1,0 +1,81 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="registration.component.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+        <form [formGroup] = "registacijaForm" (ngSubmit)="edit()">
+        <label>
+        First Name:
+        <input type="text" formControlName="firstName" value="[firstName]" required >
+        </label>
+        <br>
+
+        <label>
+        Last Name:
+        <input type="text" formControlName="lastName" value="[lastName]" >
+        </label>
+        <br>
+
+        <label>
+        Username:
+        <input type="text" [readonly]="true" formControlName="username" value="[username]" >
+        </label>
+        <br>
+
+        <label>
+          &nbsp;  &nbsp; &nbsp; &nbsp;Email: &nbsp;         
+          <input type="text" formControlName="email" value="[email]" >
+          </label>
+        <br>
+
+        <label>
+          Password:
+          <input type="text" formControlName="password" value="[password]" >
+        </label>
+        <br>
+        
+        <label>
+          Confirm Password:
+          <input type="text" formControlName="confirmPassword" value="[confirmPassword]" >
+        </label>
+        <br>
+
+        <label>
+          Type of user:
+          <select [(ngModel)]="tip" formControlName="tip" value="[tip]" >
+            <option *ngFor="let k of korisnici" >
+              {{k}}
+            </option>
+          </select>
+        </label>
+        <br>
+        
+        <label>
+          &nbsp;  &nbsp; &nbsp; &nbsp; Date:
+        <input type="date" formControlName="date" value="[date]" >
+        </label>
+        <br>
+
+
+
+  <!-- <button type="submit">Submit</button> -->
+  <input type="submit" class="fadeIn fourth"/>
+</form>
+
+<!-- <div id="formFooter">
+  <a class="underlineHover" href="#">Forgot Password?</a>
+</div> -->
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+

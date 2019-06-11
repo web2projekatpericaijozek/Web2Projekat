@@ -351,6 +351,55 @@ namespace WebApp.Controllers
             return Ok(retVal);
         }
 
+
+        [AllowAnonymous]
+        [ResponseType(typeof(string))]
+        [Route("GetRolaKorisnika/{user}")]
+        public IHttpActionResult GetRola(string user)
+        {
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            var id = User.Identity.GetUserId();
+            string retVal = "AppUser";
+            // db.Roles.Find(x => x.Id == )
+            ApplicationUser u = userManager.FindById(user);
+            if( u == null)
+            {
+                retVal = "neregistrovan";
+                return Ok(retVal);
+            }
+            List<IdentityRole> role = db.Roles.ToList();
+            foreach(IdentityRole r in role)
+            {
+                if(r.Id == u.Roles.FirstOrDefault().RoleId)
+                {
+                    retVal = r.Name;
+                }
+
+
+            }
+           
+
+            return Ok(retVal);
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(ApplicationUser))]
+        [Route("GetKorisnik/{user}")]
+        public IHttpActionResult GetUser(string user)
+        {
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            var id = User.Identity.GetUserId();
+
+            // db.Roles.Find(x => x.Id == )
+            ApplicationUser u = userManager.FindById(user);
+
+            return Ok(u);
+        }
+
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
@@ -360,15 +409,57 @@ namespace WebApp.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Date = model.Date, ConfirmPassword = model.ConfirmPassword, Tip = "student" };
+           
+
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Date = model.Date, ConfirmPassword = model.ConfirmPassword, Tip = model.Tip, Password = model.Password };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+           // userManager.Create(user);
+            userManager.AddToRole(user.Id, "AppUser");
+            
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
+
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [Route("Edit/{user}")]
+        public async Task<IHttpActionResult> Edit(string user,RegisterBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            var id = User.Identity.GetUserId();
+
+            // db.Roles.Find(x => x.Id == )
+            ApplicationUser u = userManager.FindById(user);
+
+            u.FirstName = model.FirstName;
+            u.LastName = model.LastName;
+            u.Password = model.Password;
+            u.ConfirmPassword = model.ConfirmPassword;
+            u.Email = model.Email;
+            u.Tip = model.Tip;
+            u.Date = model.Date;
+
+            userManager.Update(u);
+            
+
+
+
+            
 
             return Ok();
         }

@@ -4,6 +4,7 @@ import { User } from 'src/app/salo/osoba';
 import { Observable } from 'rxjs';
 
 
+
 @Injectable()
 export class AuthHttpService{
 
@@ -38,16 +39,34 @@ export class AuthHttpService{
             });
             //return this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username);
         }
+
+        public isAuthenticated(): boolean {
+            if(localStorage.jwt != "undefined")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+        }
         
         logIn2(username: string, password: string){
 
              this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username).subscribe();
         }
 
+       
 
         registration(data:User)
         {
              return this.http.post<any>(this.base_url + "/api/Account/Register", data).subscribe();
+            
+        }
+
+        edit(data:User,user: string)
+        {
+             return this.http.post<any>(this.base_url + "/api/Account/Edit/" + user, data).subscribe();
             
         }
 
@@ -69,5 +88,14 @@ export class AuthHttpService{
         GetTipKorisnika(user : string): Observable<any>{
            
             return this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + user);
+        }
+        GetRolaKorisnika(user : string): Observable<any>{
+           
+            return this.http.get<any>(this.base_url + "/api/Account/GetRolaKorisnika/" + user);
+        }
+
+        GetKorisnik(user : string): Observable<any>{
+           
+            return this.http.get<any>(this.base_url + "/api/Account/GetKorisnik/" + user);
         }
 }
