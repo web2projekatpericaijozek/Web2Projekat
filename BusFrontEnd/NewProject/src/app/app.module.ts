@@ -21,6 +21,8 @@ import { RedVoznjeHttpService } from './services/redvoznje.service';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { KartaComponent } from './karta/karta.component';
 import { ProfilComponent } from './profil/profil.component';
+import { KondukterComponent } from './kondukter/kondukter.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const routes : Routes = [
@@ -32,7 +34,7 @@ const routes : Routes = [
   {path:"cenovnik", component: CenovnikComponent},
   {path:"karta", component: KartaComponent},
   {path:"profil", component: ProfilComponent},
-  {path:"provera", component: KartaComponent},
+  {path:"provera", component: KondukterComponent},
   {path:"izmeniLiniju", component: KartaComponent},
 
   {path: "", component: HomeComponent, pathMatch: "full"},
@@ -52,7 +54,9 @@ const routes : Routes = [
     RedvoznjeComponent,
     CenovnikComponent,
     KartaComponent,
-    ProfilComponent
+    ProfilComponent,
+    KondukterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

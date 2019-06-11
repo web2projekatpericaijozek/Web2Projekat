@@ -25,6 +25,7 @@
       <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik == 'neregistrovan')" routerLink="/registration">Registruj se</a>
       <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik == 'neregistrovan')" routerLink="/login">Prijavi se</a>
       <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik != 'neregistrovan')" routerLink="/profil">Profil</a>
+      <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik != 'neregistrovan')" routerLink="/logout">Odjavi se</a>
     </div>
   </div>
     <!-- Collapsible content -->

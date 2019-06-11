@@ -56,6 +56,9 @@ export class AuthHttpService{
              this.http.get<any>(this.base_url + "/api/Account/GetTipKorisnika/" + username).subscribe();
         }
 
+       proveri(id : string):Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetProveriKartu/" + id);
+        }
        
 
         registration(data:User)
