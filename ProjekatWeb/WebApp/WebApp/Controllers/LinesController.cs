@@ -35,6 +35,19 @@ namespace WebApp.Controllers
             return unitOfWork.LineRepository.GetAll();
         }
 
+        [AllowAnonymous]
+        [ResponseType(typeof(void))]
+        [Route("GetPromeniLiniju/{stara}/{nova}")]
+        public IHttpActionResult  GetPromena(int stara,int nova)
+        {
+            List<Line> linije = unitOfWork.LineRepository.GetAll().ToList();
+            Line linija = linije.Find(x => x.Number == stara);
+            linija.Number = nova;
+            unitOfWork.LineRepository.Update(linija);
+            unitOfWork.Complete();
+            return Ok();
+        }
+
         // GET: api/Lines/5
         [ResponseType(typeof(Line))]
         public IHttpActionResult GetLine(int id)

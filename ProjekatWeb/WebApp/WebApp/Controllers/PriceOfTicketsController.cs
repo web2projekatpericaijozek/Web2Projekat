@@ -29,6 +29,93 @@ namespace WebApp.Controllers
         }
 
         [AllowAnonymous]
+        [ResponseType(typeof(void))]
+        [Route("GetDodaj/{tip}/{cena}")]
+        public IHttpActionResult GetDodajCenu(string tip, int cena)
+        {
+            PriceOfTicket price = new PriceOfTicket();
+            price.Price = cena;
+            TypeTicket t = unitOfWork.TypeTicketRepository.Find(x => x.Type == tip).FirstOrDefault();
+            List<Pricelist> p = unitOfWork.PricelistRepository.GetAll().ToList();
+            price.Pricelist = p.FirstOrDefault();
+            price.TypeTicket = t;
+            unitOfWork.PriceOfTicketRepository.Add(price);
+            unitOfWork.Complete();
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(void))]
+        [Route("GetObrisi/{id}")]
+        public IHttpActionResult GetObrisiCenu(int id)
+        {
+            PriceOfTicket pricelist = unitOfWork.PriceOfTicketRepository.Get(id);
+            if (pricelist == null)
+            {
+                return NotFound();
+            }
+
+            unitOfWork.PriceOfTicketRepository.Remove(pricelist);
+            unitOfWork.Complete();
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(void))]
+        [Route("GetPromeniCenu/{tip}/{cena}")]
+        public IHttpActionResult GetPromeniCenu(string tip, int cena)
+        {
+            List<TypeTicket> karte = unitOfWork.TypeTicketRepository.GetAll().ToList();
+            PriceOfTicket price = new PriceOfTicket();
+
+            foreach (TypeTicket k in karte)
+            {
+                if (tip == k.Type)
+                {
+                    price = unitOfWork.PriceOfTicketRepository.Get(k.Id);
+                    price.Price = cena;
+                    unitOfWork.PriceOfTicketRepository.Update(price);
+                    unitOfWork.Complete();
+
+
+                   
+                }
+            }
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(double))]
+        [Route("GetKartaCena/{tip}/{tipKorisnika}")]
+        public IHttpActionResult GetCenaKarte(string tip,string tipKorisnika)
+        {
+            List<TypeTicket> karte = unitOfWork.TypeTicketRepository.GetAll().ToList();
+            PriceOfTicket price = new PriceOfTicket();
+            double cena = 0;
+            foreach (TypeTicket k in karte)
+            {
+                if (tip == k.Type)
+                {
+                    price = unitOfWork.PriceOfTicketRepository.Get(k.Id);
+                    cena = price.Price;
+                    if (tipKorisnika == "student")
+                        cena = cena * 0.8;
+                    else if (tipKorisnika == "penzioner")
+                        cena = cena * 0.5;
+                    else
+                        cena = cena * 1;
+                }
+            }
+
+            if (karte == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cena);
+        }
+
+        [AllowAnonymous]
         [ResponseType(typeof(float))]
         [Route("GetKarta/{tip}")]
         public IHttpActionResult GetKartaCena(string tip)

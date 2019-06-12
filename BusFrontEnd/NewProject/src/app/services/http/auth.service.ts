@@ -76,6 +76,22 @@ export class AuthHttpService{
         GetCenaKarte(tip: string): Observable<any>{
             return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetKarta/" + tip);
         }
+        GetCenaKarte2(tip: string, tipKorisnika : string): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetKartaCena/" + tip + "/" + tipKorisnika);
+        }
+        GetPromeniCenu(tip:string,cena: number ): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetPromeniCenu/" + tip + "/" + cena);
+        }
+
+        GetPromeniLiniju(stara:number,nova: number ): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/Lines/GetPromeniLiniju/" + stara + "/" + nova);
+        }
+        GetDodajCenovnik(tip:string,cena: number ): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetDodaj/" + tip + "/" + cena);
+        }
+        GetObrisiCenovnik(id:number ): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetObrisi/" + id );
+        }
         GetKupiKartu(tipKarte: string, tipKorisnika: string, user : string): Observable<any>{
            
             return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetKartaKupi2/" + tipKarte + "/" + tipKorisnika + "/" + user);

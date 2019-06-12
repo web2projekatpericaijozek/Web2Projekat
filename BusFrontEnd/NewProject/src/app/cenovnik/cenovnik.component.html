@@ -5,13 +5,39 @@
 
 
 <nav class="navbar navbar-expand-lg">
-            <div>
-                <ul class="navbar-nav">
-                    <li class="active">
-                        <a routerLink="/cenovnik" class="nav-link">RADNI DAN</a>
-                        <a routerLink="/cenovnik" class="nav-link">SUBOTA</a>
-                        <a routerLink="/cenovnik" class="nav-link">NEDELJA</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+
+        <select [(ngModel)]="tip" >
+            <option *ngFor="let t of tipovi">
+              {{t}} 
+            </option>
+        </select> 
+        <select [(ngModel)]="korisnik"  >
+          <option *ngFor="let k of korisnici">
+            {{k}}
+          </option>
+      </select>
+        <button (click)="CenaKarte()" >Prikazi cenu ove karte! </button>
+    <br>
+        {{cena1}}
+        <form #f="ngForm" (submit)="NovaCenaKarte(f.value,f.value,f)" *ngIf = "(user == 'admin')">
+            <label>
+              Unesite novu cenu karte:
+              <input type="text" name="novaCena"  [(ngModel)]="novaCena"/>
+            </label>
+            <br>
+            <select name="tipKarte" [(ngModel)]="tipKarte" >
+                <option *ngFor="let t of tipovi">
+                  {{t}} 
+                </option>
+            </select> 
+            <label>
+                    Unesite id cenovnika koji zelite obrisati:
+            <input type="text" name="id"  [(ngModel)]="id"/>
+            </label>
+            <input type="submit" />
+            <button type="button" (click)= "Dodaj()">Dodaj</button>
+            <button type="button" (click)= "Obrisi()">Obrisi</button>
+        </form>
+
+     
+</nav>

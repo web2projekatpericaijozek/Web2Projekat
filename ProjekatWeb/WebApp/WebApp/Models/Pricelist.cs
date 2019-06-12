@@ -13,11 +13,6 @@ namespace WebApp.Models
 
         public List<PriceOfTicket> PriceOfTickets { get; set; }
 
-        public Pricelist(int i,DateTime f, DateTime t)
-        {
-            Id = i;
-            From = f;
-            To = t;
-        }
+        
     }
 }

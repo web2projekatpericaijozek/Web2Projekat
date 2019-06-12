@@ -5,11 +5,22 @@
 
 
 <nav class="navbar navbar-expand-lg">
-            <div>
+
                 <ul class="navbar-nav">
-                    <li *ngFor = "let l of lines">
+                    <li *ngFor = "let l of lines" [(ngModel)] = "linija">
+                        <label>Linija : </label>
                        {{l.Number}}
                     </li>
                 </ul>
-            </div>
+
+                <form #f="ngForm" (submit)="IzmeniLiniju(f.value,f)" *ngIf = "(user == 'admin')">
+                        <label>
+                          Unesite novu oznaku linije:
+                          <input type="text" name="linijaOznaka"  [(ngModel)]="linijaOznaka"/>
+                        </label>
+                        <br>
+                        <input type="submit" />
+                    </form>
+
+            
         </nav>

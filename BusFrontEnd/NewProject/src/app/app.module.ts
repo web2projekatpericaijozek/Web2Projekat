@@ -23,19 +23,20 @@ import { KartaComponent } from './karta/karta.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KondukterComponent } from './kondukter/kondukter.component';
 import { LogoutComponent } from './logout/logout.component';
+import { IzmeniRedVoznjeComponent } from './izmeni-red-voznje/izmeni-red-voznje.component';
 
 
 const routes : Routes = [
   {path:"home", component: HomeComponent},
   {path:"login", component: LoginComponent},
   {path:"registration", component: RegistrationComponent},
-  {path:"linije", component: LinijeComponent},
+  {path:"linijePrikaz", component: LinijeComponent},
   {path:"redvoznje", component: RedvoznjeComponent},
   {path:"cenovnik", component: CenovnikComponent},
   {path:"karta", component: KartaComponent},
   {path:"profil", component: ProfilComponent},
   {path:"provera", component: KondukterComponent},
-  {path:"izmeniLiniju", component: KartaComponent},
+  {path:"izmeniRedVoznje", component: IzmeniRedVoznjeComponent},
 
   {path: "", component: HomeComponent, pathMatch: "full"},
   {path: "**", redirectTo: "home"}
@@ -56,7 +57,8 @@ const routes : Routes = [
     KartaComponent,
     ProfilComponent,
     KondukterComponent,
-    LogoutComponent
+    LogoutComponent,
+    IzmeniRedVoznjeComponent
   ],
   imports: [
     BrowserModule,
