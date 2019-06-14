@@ -12,8 +12,11 @@ export class LinijeComponent implements OnInit {
 
   lines:Line[]=[];
   linija: Line;
+  line:Line;
   linijaOznaka: number;
+  idLinije:number;
   user:string;
+  novaLinija:number;
 
   constructor(private http:AuthHttpService ) { }
 
@@ -39,7 +42,21 @@ export class LinijeComponent implements OnInit {
   }
 
   IzmeniLiniju(tispKarte:number,form: NgForm){
-    this.http.GetPromeniLiniju(this.linija.Number, this.linijaOznaka).subscribe();
+    this.http.GetPromeniLiniju(this.idLinije, this.novaLinija).subscribe();
+  }
+
+  Dodaj()
+  {
+    let Line: Line = { Id : this.idLinije, Number : this.novaLinija  }
+      
+    
+    this.http.GetDodajLiniju(Line).subscribe();
+  }
+
+  Obrisi()
+  {
+    
+    this.http.GetObrisiLiniju(this.idLinije).subscribe();
   }
 
 }

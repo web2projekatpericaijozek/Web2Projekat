@@ -24,6 +24,22 @@ namespace WebApp.Controllers
             this.unitOfWork = unitOfWork;
         }
 
+        [AllowAnonymous]
+        [ResponseType(typeof(void))]
+        [Route("GetObrisi/{id}")]
+        public IHttpActionResult GetObrisiCenu(int id)
+        {
+            Line line = unitOfWork.LineRepository.Get(id);
+            if (line == null)
+            {
+                return NotFound();
+            }
+
+            unitOfWork.LineRepository.Remove(line);
+            unitOfWork.Complete();
+            return Ok();
+        }
+
 
         // GET: api/Lines
         [AllowAnonymous]
@@ -32,16 +48,29 @@ namespace WebApp.Controllers
         public IEnumerable<Line> GetLines()
         {
             List<Line> linije = unitOfWork.LineRepository.GetAll().ToList();
-            return unitOfWork.LineRepository.GetAll();
+            return unitOfWork.LineRepository.GetAll().ToList();
         }
 
         [AllowAnonymous]
         [ResponseType(typeof(void))]
-        [Route("GetPromeniLiniju/{stara}/{nova}")]
-        public IHttpActionResult  GetPromena(int stara,int nova)
+        [Route("DodajLiniju")]
+        public IHttpActionResult DodajLiniju(Line l)
+        {
+           
+            l.StationId = 2;
+            unitOfWork.LineRepository.Add(l);
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(void))]
+        [Route("GetPromeniLiniju/{id}/{nova}")]
+        public IHttpActionResult  GetPromena(int id,int nova)
         {
             List<Line> linije = unitOfWork.LineRepository.GetAll().ToList();
-            Line linija = linije.Find(x => x.Number == stara);
+            Line linija = linije.Find(x => x.Id == id);
             linija.Number = nova;
             unitOfWork.LineRepository.Update(linija);
             unitOfWork.Complete();

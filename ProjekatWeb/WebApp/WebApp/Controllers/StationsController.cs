@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("api/Stations")]
     public class StationsController : ApiController
     {
         private IUnitOfWork unitOfWork;
@@ -40,6 +41,20 @@ namespace WebApp.Controllers
             }
 
             return Ok(station);
+        }
+
+        [AllowAnonymous]
+        [ResponseType(typeof(string))]
+        [Route("GetDodajLiniju/{id}/{brLinije}")]
+        public IHttpActionResult DodajLiniju(int id, int brLinije)
+        {
+            Line l = new Line();
+            l.Id = id;
+            l.Number = brLinije;
+            l.StationId = 2;
+            unitOfWork.LineRepository.Add(l);
+
+            return Ok("super");
         }
 
         // PUT: api/Stations/5

@@ -5,6 +5,10 @@ html {
     background-color: #56baed;
   }
   
+  * {
+    font-size: 16px;
+    font-family: Arial;
+   }
   body {
     font-family: "Poppins", sans-serif;
     font-size: 20px;

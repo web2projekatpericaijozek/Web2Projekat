@@ -24,6 +24,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { KondukterComponent } from './kondukter/kondukter.component';
 import { LogoutComponent } from './logout/logout.component';
 import { IzmeniRedVoznjeComponent } from './izmeni-red-voznje/izmeni-red-voznje.component';
+import { IzmeniLinijuComponent } from './izmeni-liniju/izmeni-liniju.component';
 
 
 const routes : Routes = [
@@ -58,7 +59,8 @@ const routes : Routes = [
     ProfilComponent,
     KondukterComponent,
     LogoutComponent,
-    IzmeniRedVoznjeComponent
+    IzmeniRedVoznjeComponent,
+    IzmeniLinijuComponent
   ],
   imports: [
     BrowserModule,

@@ -20,12 +20,10 @@
       <a class="nav-item nav-link" routerLink="/redvoznje">Red voznje</a>
       <a class="nav-item nav-link" routerLink="/cenovnik">Cenovnik</a>
       <a class="nav-item nav-link" routerLink="/karta">Kupi kartu</a>
-      <a class="nav-item nav-link"  [(ngModel)]="korisnik" *ngIf = "(korisnik == 'Admin')" routerLink="/izmeniLiniju">Izmena Linije</a>
       <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik == 'Controller')" routerLink="/provera">Proveri kartu</a>
       <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik == 'neregistrovan')" routerLink="/registration">Registruj se</a>
       <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik == 'neregistrovan')" routerLink="/login">Prijavi se</a>
       <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik != 'neregistrovan')" routerLink="/profil">Profil</a>
-      <a class="nav-item nav-link" [(ngModel)]="korisnik" *ngIf = "(korisnik != 'neregistrovan')" routerLink="/logout">Odjavi se</a>
     </div>
   </div>
     <!-- Collapsible content -->

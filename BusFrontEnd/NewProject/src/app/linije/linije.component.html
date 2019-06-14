@@ -1,26 +1,38 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="registration.component.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 
 
 <nav class="navbar navbar-expand-lg">
-
+             <div class="wrapper fadeInDown"> 
+              <div>
                 <ul class="navbar-nav">
-                    <li *ngFor = "let l of lines" [(ngModel)] = "linija">
-                        <label>Linija : </label>
-                       {{l.Number}}
+                  <label>Linije :  
+                  <li *ngFor = "let l of lines" [(ngModel)] = "lines">
+                        
+                       {{l.Number}} 
                     </li>
+                  </label>
                 </ul>
-
+              </div>
+              <div>
                 <form #f="ngForm" (submit)="IzmeniLiniju(f.value,f)" *ngIf = "(user == 'admin')">
                         <label>
-                          Unesite novu oznaku linije:
-                          <input type="text" name="linijaOznaka"  [(ngModel)]="linijaOznaka"/>
+                          Unesite id linije:
+                          <input type="text" name="idLinije"  [(ngModel)]="idLinije"/><br/>
+                          Unesite novi broj linije:
+                          <input type="text" name="novaLinija"  [(ngModel)]="novaLinija"/><br/>
                         </label>
                         <br>
-                        <input type="submit" />
-                    </form>
+                        
+                        <input type="submit" value="Izmeni" />
+                        <button type="button" (click)= "Dodaj()">Dodaj</button>
+                        <button type="button" (click)= "Obrisi()">Obrisi</button>
+                        
 
-            
+                    </form>
+              </div>
+             </div>
         </nav>

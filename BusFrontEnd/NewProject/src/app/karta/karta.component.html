@@ -1,4 +1,6 @@
-<p>
+
+
+
   <select [(ngModel)]="tip" *ngIf = "(korisnik == 'registrovan')" >
       <option *ngFor="let t of tipovi">
         {{t}} 
@@ -14,4 +16,4 @@
   {{cena1}}
   <button (click)="KupiKartu()">Kupi kartu! </button>
   {{vaziDo1}}
-</p>
+

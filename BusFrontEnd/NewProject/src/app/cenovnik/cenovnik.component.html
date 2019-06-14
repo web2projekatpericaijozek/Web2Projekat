@@ -1,43 +1,62 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="registration.component.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 
 <nav class="navbar navbar-expand-lg">
 
-        <select [(ngModel)]="tip" >
-            <option *ngFor="let t of tipovi">
-              {{t}} 
-            </option>
-        </select> 
+  <div class="wrapper fadeInDown">
+        <label> Tip karte:
+          <select [(ngModel)]="tip" >
+              <option *ngFor="let t of tipovi">
+                {{t}} 
+              </option>
+          </select> 
+          <br>
+      </label>
+        <br>
+        <label>Tip Korisnika: 
         <select [(ngModel)]="korisnik"  >
           <option *ngFor="let k of korisnici">
             {{k}}
           </option>
       </select>
+      <br>
+    </label>
+    <br>
         <button (click)="CenaKarte()" >Prikazi cenu ove karte! </button>
     <br>
+  
         {{cena1}}
+        <br>
+        <br>
         <form #f="ngForm" (submit)="NovaCenaKarte(f.value,f.value,f)" *ngIf = "(user == 'admin')">
             <label>
+              <br>
               Unesite novu cenu karte:
               <input type="text" name="novaCena"  [(ngModel)]="novaCena"/>
             </label>
             <br>
+            <label>Tip karte:
             <select name="tipKarte" [(ngModel)]="tipKarte" >
                 <option *ngFor="let t of tipovi">
                   {{t}} 
                 </option>
             </select> 
+          </label>
+            <br>
             <label>
-                    Unesite id cenovnika koji zelite obrisati:
+                    Unesite id cene karte koji zelite obrisati:
             <input type="text" name="id"  [(ngModel)]="id"/>
             </label>
-            <input type="submit" />
+
+            <input type="submit" value="Izmeni" />
+
             <button type="button" (click)= "Dodaj()">Dodaj</button>
+
             <button type="button" (click)= "Obrisi()">Obrisi</button>
         </form>
 
-     
+      </div>
 </nav>

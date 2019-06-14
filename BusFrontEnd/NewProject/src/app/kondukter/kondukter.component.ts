@@ -11,12 +11,16 @@ import { Router } from '@angular/router';
 export class KondukterComponent implements OnInit {
 
   private id:string;
+  tekst:string;
   constructor(private http: AuthHttpService,public router: Router) { }
 
   ngOnInit() {
   }
   proveri(id : string,form: NgForm){
-    this.http.proveri(this.id).subscribe();
+    this.http.proveri(this.id).subscribe((tekstt)=>{
+      this.tekst = tekstt;
+      err => console.log(err);
+    });
     //this.http.logIn2(user.username,user.password);
     //form.reset();
     //window.location.reload();

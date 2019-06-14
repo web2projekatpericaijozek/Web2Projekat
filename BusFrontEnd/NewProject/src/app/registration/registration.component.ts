@@ -35,6 +35,7 @@ export class RegistrationComponent implements OnInit  {
     register(){
       let regModel: User = this.registacijaForm.value;
       this.http.registration(regModel);
+      this.router.navigate(["/home"]);
       //form.reset();
     }
 

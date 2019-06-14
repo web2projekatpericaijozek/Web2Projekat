@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/salo/osoba';
 import { Observable } from 'rxjs';
+import { Line } from 'src/app/model';
 
 
 
@@ -83,8 +84,8 @@ export class AuthHttpService{
             return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetPromeniCenu/" + tip + "/" + cena);
         }
 
-        GetPromeniLiniju(stara:number,nova: number ): Observable<any>{
-            return this.http.get<any>(this.base_url + "/api/Lines/GetPromeniLiniju/" + stara + "/" + nova);
+        GetPromeniLiniju(id:number,nova: number ): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/Lines/GetPromeniLiniju/" + id + "/" + nova);
         }
         GetDodajCenovnik(tip:string,cena: number ): Observable<any>{
             return this.http.get<any>(this.base_url + "/api/PriceOfTickets/GetDodaj/" + tip + "/" + cena);
@@ -116,5 +117,13 @@ export class AuthHttpService{
         GetKorisnik(user : string): Observable<any>{
            
             return this.http.get<any>(this.base_url + "/api/Account/GetKorisnik/" + user);
+        }
+
+        GetDodajLiniju(data:Line): Observable<any>{
+            return this.http.post<any>(this.base_url + "/api/Lines/DodajLiniju" ,data);
+        }
+
+        GetObrisiLiniju(id:number ): Observable<any>{
+            return this.http.get<any>(this.base_url + "/api/Lines/GetObrisi/" + id );
         }
 }
